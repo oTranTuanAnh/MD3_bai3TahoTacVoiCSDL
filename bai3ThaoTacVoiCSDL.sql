@@ -28,4 +28,6 @@ select *
 from customer 
 where not exists(select * from orders where orders.fk_customerID = customer.customerID);
 
-show databases;
+select o.orderID, o.orderDate, p.productName, od.orderQTY*productPrice as cost
+from orders o join orderdetail od on od.fk_orderID = o.orderID
+join product p on od.fk_productID = p.productID;
